@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        }
+        .flex-container {
+        display: flex;
+        margin: 0 auto;
+        justify-content: space-around;
+        align-items: center;
+        text-align: center;
+        
+      }
+    </style>
+</head>
+<body id="bd">
+    <div class="flex-container">
+        <div id="over">
+          <h4>On Mouse Over Event</h4>
+          <button onmouseover="mouseover()" onmouseout="mouseout()">
+            Hover Over Me
+          </button>
+        </div>
+        <div id="focus">
+          <h4>On Focus Event</h4>
+          <input type="text" onfocus="focusele()" onblur="mouseout()" />
+          <!--<input type="text" id="onfocus">-->
+        </div>
+      </div>
+
+      <script>
+        function mouseover(){
+            document.getElementById("bd").style.backgroundColor="red";
+        }
+
+        function mouseout(){
+            document.getElementById("bd").style.backgroundColor="white";
+        }
+
+        function focusele(){
+            document.getElementById("bd").style.backgroundColor="purple";
+        }
+      
+      </script>
+</body>
+</html>

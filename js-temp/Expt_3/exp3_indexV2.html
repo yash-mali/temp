@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>String Operations</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f8f9fa;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #28a745; /* Green color */
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .result-box {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #28a745; /* Green border */
+      border-radius: 5px;
+      color: #28a745; /* Green text color */
+      font-weight: bold;
+      min-height: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>String Operations</h1>
+  <label for="inputString">Input String:</label>
+  <input type="text" id="inputString">
+  <br>
+  <label for="charToReplace">Character to Replace:</label>
+  <input type="text" id="charToReplace" maxlength="1">
+  <br>
+  <label for="replaceIndex">Index to Replace:</label>
+  <input type="number" id="replaceIndex">
+  <br>
+  <label for="replaceChar">Replacement Character:</label>
+  <input type="text" id="replaceChar" maxlength="1">
+  <br>
+  <br>
+  <button onclick="performStringReversal()">Reverse String</button>
+  <button onclick="replaceAllOccurrences()">Replace All Occurrences</button>
+  <button onclick="replaceCharacter()">Replace Specific Character</button>
+  <button onclick="replaceAtIndex()">Replace at Index</button>
+  <button onclick="checkPalindrome()">Check Palindrome</button>
+  <br><br>
+  <label for="replaceChar">Results:</label>
+  <div id="resultReversal" class="result-box" ></div>
+
+
+  <script>
+    function performStringReversal() {
+      const inputString = document.getElementById('inputString').value;
+      if (!inputString) {
+        document.getElementById('resultReversal').innerText = 'Please enter a valid string.';
+        return;
+      }
+
+      const reversedString = inputString.split('').reverse().join('');
+      document.getElementById('resultReversal').innerText = `Reversed String: ${reversedString}`;
+    }
+
+    function replaceAllOccurrences() {
+      const inputString = document.getElementById('inputString').value;
+      const charToReplace = document.getElementById('charToReplace').value;
+      if (!inputString || charToReplace.length !== 1) {
+        document.getElementById('resultReversal').innerText = 'Please enter a valid string and a single character.';
+        return;
+      }
+
+      const replacedString = inputString.split(charToReplace).join('');
+      document.getElementById('resultReversal').innerText = `String after replacement: ${replacedString}`;
+    }
+
+    function replaceCharacter() {
+      const inputString = document.getElementById('inputString').value;
+      const charToReplace = document.getElementById('charToReplace').value;
+      const replaceChar = document.getElementById('replaceChar').value;
+
+      if (!inputString || charToReplace.length !== 1 || replaceChar.length !== 1) {
+        document.getElementById('resultReversal').innerText = 'Please enter a valid string, character, and replacement character.';
+        return;
+      }
+
+      const replacedString = inputString.split(charToReplace).join(replaceChar);
+      document.getElementById('resultReversal').innerText = `String after replacement: ${replacedString}`;
+    }
+
+    function replaceAtIndex() {
+      const inputString = document.getElementById('inputString').value;
+      const replaceIndex = parseInt(document.getElementById('replaceIndex').value);
+      const replaceChar = document.getElementById('replaceChar').value;
+
+      if (!inputString || isNaN(replaceIndex) || replaceIndex < 0 || replaceIndex >= inputString.length || replaceChar.length !== 1) {
+        document.getElementById('resultReversal').innerText = 'Please enter a valid string, index, and a single replacement character.';
+        return;
+      }
+
+      const replacedString = inputString.substring(0, replaceIndex) + replaceChar + inputString.substring(replaceIndex + 1);
+      document.getElementById('resultReversal').innerText = `String after replacement: ${replacedString}`;
+    }
+
+    function checkPalindrome() {
+      const inputString = document.getElementById('inputString').value.toLowerCase();
+      if (!inputString) {
+        document.getElementById('resultReversal').innerText = 'Please enter a valid string.';
+        return;
+      }
+
+      const reversedString = inputString.split('').reverse().join('');
+
+      if (inputString === reversedString) {
+        document.getElementById('resultReversal').innerText = 'String is a palindrome.';
+      } else {
+        document.getElementById('resultReversal').innerText = 'String is not a palindrome.';
+      }
+    }
+  </script>
+</body>
+</html>

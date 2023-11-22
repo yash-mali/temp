@@ -1,0 +1,67 @@
+<html>
+    <head>
+      <title>Array Operations</title>
+    </head>
+    <body style="text-align: center">
+      <h1>Array Operations</h1>
+      <p>Enter the size of the array:</p>
+      <input type="number" id="arraySize" placeholder="Enter size">
+    
+      <div id="addObjectsInput">
+        <p>Enter an object :</p>
+        <input type="text" id="inputObject" placeholder="Enter object">
+        <button onclick="addObjectToArray()">Add Object to Array</button>
+      </div>
+    
+      <div id="checkArrayAtIndexInput">
+        <p>Enter an index to check:</p>
+        <input type="number" id="indexToCheck" placeholder="Enter index">
+        <button onclick="checkArrayAtIndex()">Check Array at Index</button>
+      </div>
+      <br>
+    
+      <button onclick="showArray()">Show array</button>
+    
+      <div id="result"></div>
+    
+      <script>
+        const objectArray = [];
+    
+        function addObjectToArray() {
+          const inputObject = document.getElementById('inputObject').value;
+          const arraySize = parseInt(document.getElementById('arraySize').value);
+          try {
+            const object = JSON.parse(inputObject);
+            if(objectArray.length>=arraySize)alert("Array is full");
+            else{
+            objectArray.push(object);
+            document.getElementById('inputObject').value = ''; 
+            alert('Object added to the array!');
+            }
+          } catch (error) {
+            alert('Invalid object format. Please enter a valid JSON object.');
+          }
+        }
+    
+        function checkArrayAtIndex() {
+          const indexToCheck = parseInt(document.getElementById('indexToCheck').value);
+          if (indexToCheck >= 0 && indexToCheck < objectArray.length) {
+            const isArrayAtIndex = Array.isArray(objectArray[indexToCheck]); //true or false
+            alert(`The object at index ${indexToCheck} is an array: ${isArrayAtIndex}`);
+          } else {
+            alert('Invalid index. Please enter a valid index.');
+          }
+        }
+    
+        function showArray() {
+          const arraySize = parseInt(document.getElementById('arraySize').value);
+            if (arraySize < 1) {
+              document.getElementById('result').innerText = 'Array size should be at least 1.';
+              return;
+            }
+            document.getElementById('result').innerHTML =  JSON.stringify(objectArray, null, 2) ;
+          
+        }
+      </script>
+    </body>
+    </html>

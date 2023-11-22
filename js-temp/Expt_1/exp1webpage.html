@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Area of Different Shapes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #007BFF;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .calculate-button {
+            background-color: #FF6B6B;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .calculate-button:hover {
+            background-color: #FF4D4D;
+        }
+
+        .input-container {
+            margin-bottom: 10px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .result {
+            color: #333;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Area of Different Shapes</h1>
+        <h3>42174 Yash Mali</h3>
+
+        <!-- Rectangle Area Calculation -->
+        <div class="shape-container">
+            <h2>Rectangle Area Calculation</h2>
+            <div class="input-container">
+                <label for="length">Length:</label>
+                <input type="number" id="length" />
+
+            </div>
+            <div class="input-container">
+                <label for="breadth">Breadth:</label>
+                <input type="number" id="breadth" />
+            </div>
+            <button class="calculate-button" onclick="calculateRectangle()">Calculate</button>
+            <p class="result">Area: <span id="area_rectangle"></span></p>
+        </div>
+
+        <!-- Circle Area Calculation -->
+        <div class="shape-container">
+            <h2>Circle Area Calculation</h2>
+            <div class="input-container">
+                <label for="radius">Radius:</label>
+                <input type="number" id="radius" />
+            </div>
+            <button class="calculate-button" onclick="calculateCircle()">Calculate</button>
+            <p class="result">Area: <span id="area_circle"></span></p>
+        </div>
+
+        <!-- Triangle Area Calculation -->
+        <div class="shape-container">
+            <h2>Triangle Area Calculation</h2>
+            <div class="input-container">
+                <label for="sidea">Side A:</label>
+                <input type="number" id="sidea" />
+            </div>
+            <div class="input-container">
+                <label for="sideb">Side B:</label>
+                <input type="number" id="sideb" />
+            </div>
+            <div class="input-container">
+                <label for="sidec">Side C:</label>
+                <input type="number" id="sidec" />
+            </div>
+            <button class="calculate-button" onclick="calculateTriangle()">Calculate</button>
+            <p class="result">Area: <span id="area_triangle"></span></p>
+        </div>
+    </div>
+
+    <script>
+        function calculateRectangle() {
+            var len = parseInt(document.getElementById("length").value);
+            var bre = parseInt(document.getElementById("breadth").value);
+
+            if (len < 0 || bre < 0) {
+                alert("Values cannot be negative");
+            } else {
+                document.getElementById("area_rectangle").innerText = len * bre;
+            }
+        }
+
+        function calculateCircle() {
+            var rad = parseInt(document.getElementById("radius").value);
+            if (rad < 0) {
+                alert('Radius cannot be negative');  
+            } else {
+                document.getElementById("area_circle").innerText = (Math.PI * rad * rad).toFixed(2);
+            }
+        }
+
+        function calculateTriangle() {
+            var a = parseInt(document.getElementById("sidea").value);
+            var b = parseInt(document.getElementById("sideb").value);
+            var c = parseInt(document.getElementById("sidec").value);
+            if (a <= 0 || b <= 0 || c <= 0) {
+                alert("Side lengths must be positive");
+            } else if (a + b <= c || a + c <= b || b + c <= a) {
+                alert("Invalid side lengths for a triangle");
+            } else {
+                const s = (a + b + c) / 2;
+                document.getElementById("area_triangle").innerText = Math.sqrt(s * (s - a) * (s - b) * (s - c)).toFixed(2);
+            }
+        }
+    </script>
+</body>
+</html>

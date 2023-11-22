@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="num">Enter Number : </label>
+    <input type="number" name="" id="num">
+
+    <button onclick="forloop()">For loop</button>
+    <button onclick="whileloop()">while loop</button>
+    <button onclick="dowhile()">do while loop</button>
+
+    <h2> Tables </h2>
+    <p id="result1"></p>
+    <br>
+    <p id="result2"></p>
+    <br>
+    <p id="result3"></p>
+    <br>
+
+    <script>
+        function forloop(){
+            let a = parseInt(document.getElementById("num").value);
+
+            let out = " <h2> Table using for loop</h2> ";
+
+            for(let i =1;i<=10;i++){
+                out= out + a + "*" + i + "=" + a*i + "<br/>";
+            }
+            document.getElementById("result1").innerHTML = out;
+        }
+
+        function whileloop(){
+            let b = parseInt(document.getElementById("num").value);
+
+            let outt = " <h2> Table using while</h2> ";
+           let i =1;
+           while(i<=10){
+            outt= outt + b + "*" + i + "=" + b*i + "<br/>";
+            i++;
+           }
+          
+            document.getElementById("result2").innerHTML = outt;
+        }
+
+        function dowhile(){
+            let c = parseInt(document.getElementById("num").value);
+
+            let outtt = " <h2> Table using while</h2> ";
+           let i =1;
+          do{
+            outtt= outtt + c + "*" + i + "=" + c*i + "<br/>";
+            i++;
+           }while(i<=10);
+          
+            document.getElementById("result3").innerHTML = outtt;
+        }
+    </script>
+</body>
+</html>

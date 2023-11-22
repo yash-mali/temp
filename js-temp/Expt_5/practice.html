@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Countdown Timer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        font-size: 24px;
+        color: #333;
+      }
+
+      h2 {
+        font-size: 18px;
+        color: #555;
+      }
+
+      input {
+        padding: 10px;
+        font-size: 16px;
+        width: 100%;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      label {
+        display: block;
+        text-align: left;
+      }
+
+      button {
+        background-color: #008cba;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      button:hover {
+        background-color: #005f87;
+      }
+
+      hr {
+        border: none;
+        border-top: 1px solid #ccc;
+        margin: 20px 0;
+      }
+
+      #output {
+        font-size: 18px;
+        margin-top: 20px;
+        color: #333;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Countdown Timer</h1>
+
+      <div>
+        <h2>Yash Mali</h2>
+        <h3>Roll No.: 42174</h3>
+      </div>
+      <hr />
+
+      <div>
+        <label for="day">Enter Day (DD):</label>
+        <input type="number" id="day" placeholder="DD" min="1" max="31" />
+      </div>
+
+      <div>
+        <label for="month">Enter Month (MM):</label>
+        <input type="number" id="month" placeholder="MM" min="1" max="12" />
+      </div>
+
+      <div>
+        <label for="year">Enter Year (YYYY):</label>
+        <input type="number" id="year" placeholder="YYYY" />
+      </div>
+
+      <div>
+        <label for="time">Enter Time (HH:MM:SS):</label>
+        <input type="text" id="time" placeholder="HH:MM:SS" />
+      </div>
+
+      <button onclick="countdown()">Calculate Time Left</button>
+      <hr />
+      <p id="output"></p>
+      <hr />
+    </div>
+
+    <script>
+     function countdown(){
+        var day = document.getElementById("day").value;
+        var month = document.getElementById("month").value;
+        var year = document.getElementById("year").value;
+        var time = document.getElementById("time").value;
+        if (day === "" || month === "" || year === "" || time === "") {
+          alert(
+            "Please provide values for all fields: Day, Month, Year, and Time"
+          );
+          return;
+        }
+
+        var timeblock = time.split(":");
+        if (timeblock.length !== 3) {
+          alert("Please provide a complete time value in HH:MM:SS format.");
+          return;
+        }
+
+        var x= setInterval(function(){
+            var currdate = new Date().getTime();
+            var enterdate = new Date(
+                year,
+                month-1,
+                day,
+                timeblock[0],
+                timeblock[1],
+                timeblock[2],
+            ).getTime();
+
+            var timeLeft = enterdate- currdate;
+
+            if (timeLeft <= 0) {
+            clearInterval(x);
+            document.getElementById("output").innerHTML =
+              "Countdown Timer Expired";
+            return;
+          }
+
+          var days = Math.floor(timeLeft/(1000*60*60*24));
+          var hours =Math.floor((timeLeft %(1000*60*60*24))/(1000*60*60));
+         
+          var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+          document.getElementById("output").innerHTML =
+            "Time Left: " +
+            days +
+            " Days " +
+            hours +
+            " Hours " +
+            minutes +
+            " Minutes " +
+            seconds +
+            " Seconds ";
+        },1000)
+     }
+    </script>
+  </body>
+</html>

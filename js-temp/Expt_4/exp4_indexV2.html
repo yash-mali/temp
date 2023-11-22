@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>String Comparison</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f8f9fa;
+    }
+
+    h1 { 
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #result {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #007bff;
+      border-radius: 5px;
+    }
+
+    .result-box {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>String Comparison</h1>
+  <label for="string1">String 1:</label>
+  <input type="text" id="string1">
+  <br>
+  <label for="string2">String 2:</label>
+  <input type="text" id="string2">
+  <br>
+  <button onclick="compareStrings()">Compare Strings</button>
+  <br><br>
+
+  <div id="result" class="result-box"></div>
+
+  <script>
+    function compareStrings() {
+      const string1 = document.getElementById('string1').value;
+      const string2 = document.getElementById('string2').value;
+
+      if (!string1 || !string2) {
+        alert('Please enter both strings for comparison.');
+        return;
+      }
+
+      const comparisons = {
+        "Standard Comparison (==)": string1 == string2,
+        "Standard Comparison (===)": string1 === string2,
+        "Locale Compare": string1.localeCompare(string2),
+        "Case-Insensitive Comparison": string1.toLowerCase() === string2.toLowerCase(),
+        "Length Comparison": string1.length === string2.length,
+        "Reverse Comparison": string1.split('').reverse().join('') === string2,
+        "Custom Method (e.g., your custom logic)": customComparison(string1, string2),
+        "Regex Method" : new RegExp(string1, "gi").test(string2)
+      };
+
+      displayResults(comparisons);
+    }
+
+    function customComparison(str1, str2) {
+      // comparing string by strict compariion in lowercase
+      return str1.toLowerCase() === str2.toLowerCase();
+    }
+
+    function displayResults(comparisons) {
+      const resultBox = document.getElementById('result');
+      resultBox.innerHTML = '<h2>Comparison Results:</h2>';
+      
+      for (const method in comparisons) {
+        const resultItem = document.createElement('div');
+        resultItem.classList.add('result-box');
+        resultItem.innerHTML = `<strong>${method}:</strong> ${comparisons[method]}`;
+        resultBox.appendChild(resultItem);
+      }
+    }
+  </script>
+</body>
+</html>

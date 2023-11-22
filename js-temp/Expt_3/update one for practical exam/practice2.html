@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="reverse">Enter string</label>
+    <input type="text" id="reverse" placeholder="Input the string">
+    <button onclick="reverse()" >Reverse</button>
+    <p>Final reversed string: <span id="display"></span></p>
+
+
+
+    <h3>Replace characters of a string</h3>
+    <label for="str">Enter the string:</label>
+    <input type="text" id="str" placeholder="Type in the string" />
+    <br /><br />
+    <label for="char1">Enter the character to be replaced:</label>
+    <input type="text" id="char1" placeholder="Type character from the input string"
+    />
+    <br /><br />
+    <label for="char2">Enter replacing character:</label>
+    <input type="text" id="char2" placeholder="Type the replacing character" />
+    <br /><br />
+    <button onclick="replaceS()">Replace!</button>
+    <p>Final output string after replacing: <span id="display1"></span></p>
+    <br /><br />
+
+    <script>
+        function reverse(){
+            let input = document.getElementById("reverse").value;
+            let reversedString ="";
+
+            for(let i= input.length -1 ; i>=0 ;i-- ){
+            reversedString +=input[i];
+            }
+            document.getElementById("display").innerHTML = reversedString;
+        }
+
+        function replaceS() {
+        let str = document.getElementById("str").value;
+        let char1 = document.getElementById("char1").value;
+        let char2 = document.getElementById("char2").value;
+        
+        if(str.indexOf(char1)>-1 == true){
+            let new_final = str.replaceAll(char1, char2);
+            document.getElementById("display1").innerHTML = new_final;
+    }
+    else{
+        alert('Invalid String')
+    }
+    }
+    </script>
+</body>
+</html>
